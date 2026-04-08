@@ -1,0 +1,25 @@
+void leerVector(int v[], int *n);
+void leerVector(int v[], int *n){
+    int i;
+    printf("Ingrese cantidad de componentes: ");
+    scanf("%d", n);
+    for(i = 0; i < *n; i++){
+        printf("Ingrese v[%d] = ", i);
+        scanf("%d", &v[i]);
+    }
+}
+
+
+void leerMatriz(int mat[][DIM], int *n, int *m);
+void leerMatriz(int mat[][DIM], int *n, int *m){
+    int i, j;
+    printf("Ingrese cantidad de filas: ");        //Optimizar con un do...while para verificar que el usuario haya ingresado bien la cantidad
+    scanf("%d", n);                               //de filas y columnas.
+    printf("Ingrese cantidad de columnas: ");     //n y m podria ser unsigned int.
+    scanf("%d", m);
+    for(i = 0; i < *n; i++)
+        for(j = 0; j < *m; j++){
+            printf("Ingrese componente mat[%d][%d]: ", i, j);
+            scanf("%d", &mat[i][j]);
+        }
+}
