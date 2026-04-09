@@ -26,7 +26,33 @@ void leerMatriz(int mat[][DIM], int *n){
         }
 }
 
-int minimo(int mat[][DIM], int i, int j, int n){       //Recorro por filas desde el ultimo elemento
+
+//Agrego una variable local.
+int minimo(int mat[][DIM], int i, int j, int n){
+    int min_res;
+    if(i == 0 && j == 0)
+        return mat[i][j];
+    else{
+        if(j > 0){
+            min_res = minimo(mat, i, j - 1, n);
+            if(mat[i][j] < min_res)
+                return mat[i][j];
+            else
+                return min_res;
+        }
+        else{
+            min_res = minimo(mat, i - 1, n, n);
+            if(mat[i][j] < min_res)
+                return mat[i][j];
+            else
+                return min_res;
+        }
+    }
+}
+
+
+
+/*int minimo(int mat[][DIM], int i, int j, int n){       //Recorro por filas desde el ultimo elemento
     if(i == 0 && j == 0)
         return mat[i][j];
     else{
@@ -41,4 +67,4 @@ int minimo(int mat[][DIM], int i, int j, int n){       //Recorro por filas desde
             else
                 return minimo(mat, i - 1, n, n);
     }
-}
+}*/

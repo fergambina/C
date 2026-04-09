@@ -9,6 +9,14 @@ void leerVector(int v[], int *n){
     }
 }
 
+void escribirVector(int v[], int n);
+void escribirVector(int v[], int n){
+    int i;
+    for(i = 0; i < n; i++){
+        printf("%d\t", v[i]);
+    }
+}
+
 
 void leerMatriz(int mat[][DIM], int *n, int *m);
 void leerMatriz(int mat[][DIM], int *n, int *m){
@@ -19,6 +27,18 @@ void leerMatriz(int mat[][DIM], int *n, int *m){
     scanf("%d", m);
     for(i = 0; i < *n; i++)
         for(j = 0; j < *m; j++){
+            printf("Ingrese componente mat[%d][%d]: ", i, j);
+            scanf("%d", &mat[i][j]);
+        }
+}
+
+void leerMatriz(int mat[][DIM], int *n);
+void leerMatriz(int mat[][DIM], int *n){
+    int i, j;
+    printf("Ingrese dimension de la matriz: ");
+    scanf("%d", n);
+    for(i = 0; i < *n; i++)
+        for(j = 0; j < *n; j++){
             printf("Ingrese componente mat[%d][%d]: ", i, j);
             scanf("%d", &mat[i][j]);
         }
