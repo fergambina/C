@@ -47,13 +47,13 @@ void leerVector(int v[], int *n){
 void mezcla(int A[], int i, int n1, int B[], int j, int n2, int C[], int *n3) {
     if (i < n1 && j < n2) {
         if (A[i] < B[j]) {
-            if (A[i] != C[*n3 - 1]) {
+            if (*n3 != 0 || A[i] != C[*n3 - 1]) {
                 C[*n3] = A[i];
                 (*n3)++;
             }
             mezcla(A, i + 1, n1, B, j, n2, C, n3);
         } else {
-            if (B[j] != C[*n3 - 1]) {
+            if (*n3 != 0 || B[j] != C[*n3 - 1]) {
                 C[*n3] = B[j];
                 (*n3)++;
             }
@@ -61,14 +61,14 @@ void mezcla(int A[], int i, int n1, int B[], int j, int n2, int C[], int *n3) {
         }
     } else {
         if (i < n1) {
-            if (A[i] != C[*n3 - 1]) {
+            if (*n3 != 0 || A[i] != C[*n3 - 1]) {
                 C[*n3] = A[i];
                 (*n3)++;
             }
             mezcla(A, i + 1, n1, B, j, n2, C, n3);
         } else {
             if (j < n2) {
-                if (B[j] != C[*n3 - 1]) {
+                if (*n3 != 0 || B[j] != C[*n3 - 1]) {
                     C[*n3] = B[j];
                     (*n3)++;
                 }
