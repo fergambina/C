@@ -20,6 +20,7 @@ int main()
 void cargarPila(TPila *P){
     FILE *archT;
     TElementoP car;
+    iniciaP(P);
     archT = fopen("caracteres.txt", "rt");
     if(archT != NULL){
         while(fscanf(archT, "%c\n", &car) == 1)
