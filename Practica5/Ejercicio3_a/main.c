@@ -15,7 +15,7 @@ int main()
     cargarVotantes(&P);
     printf("Ingrese N: ");
     scanf("%d", &n);
-    printf("Monstrando los ultimos N votantes...")
+    printf("Monstrando los ultimos N votantes...");
     mostrarVotantes(&P, n);
     return 0;
 }
