@@ -4,3 +4,5 @@
 void iniciaP(TPila *P){
     *P = NULL;
 }
+
+void vaciaP

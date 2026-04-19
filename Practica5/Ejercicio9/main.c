@@ -9,13 +9,15 @@ Utilizar pilas de caracteres. */
 
 #define DIM 1000
 
+typedef char st[DIM];
+
 void cargarNumPila(TPila *p, char num[]);
 void suma(TPila *p1, TPila *p2, TPila *pres);
 void mostrarPila(TPila *p);
 
 int main()
 {
-    char num1[DIM], num2[DIM];
+    st num1, num2;
     TPila p1, p2, pres;
     printf("Ingrese un numero: ");
     scanf("%s", num1);
