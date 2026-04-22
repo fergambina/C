@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1776894061 source:c:\users\usuario\desktop\prog_b\practica5\ejercicio12\colaestatica.c
+	"ColaEstatica.h"
+
+1776895042 c:\users\usuario\desktop\prog_b\practica5\ejercicio12\colaestatica.h
+
+1776640674 source:c:\users\usuario\desktop\prog_b\practica5\ejercicio12\pilaestatica.c
+	"PilaEstatica.h"
+
+1776898801 c:\users\usuario\desktop\prog_b\practica5\ejercicio12\pilaestatica.h
+
+1776898977 source:c:\users\usuario\desktop\prog_b\practica5\ejercicio12\main.c
+	<stdio.h>
+	<stdlib.h>
+	"PilaEstatica.h"
+	"ColaEstatica.h"
+
