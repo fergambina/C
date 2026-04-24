@@ -17,6 +17,8 @@ typedef nodo *TLista;
 
 void cargaVector(int vec[], int *N);
 void generaListaInvirtiendoOrden(TLista *L, int vec[], int N);
+void generaListaManteniendoOrden(TLista *L, int vec[], int N);
+void generaListaOrdenada(TLista *L , int vec[], int N);
 void escribirLista(TLista L);
 
 int main()
@@ -24,7 +26,9 @@ int main()
     int vec[DIM], N;
     TLista L = NULL;
     cargaVector(vec, &N);
-    generaListaInvirtiendoOrden(&L, vec, N);
+    //generaListaInvirtiendoOrden(&L, vec, N);
+    //generaListaManteniendoOrden(&L, vec, N);
+    generaListaOrdenada(&L, vec, N);
     escribirLista(L);
     return 0;
 }
@@ -50,6 +54,53 @@ void generaListaInvirtiendoOrden(TLista *L, int vec[], int N){
         aux->num = vec[i];
         aux->sig = *L; //Al campo siguiente del nodo nuevo le asigno la dirección del nodo que era el primero de la lista y queda apuntando a el
         *L = aux;
+    }
+}
+
+void generaListaManteniendoOrden(TLista *L, int vec[], int N){
+    TLista aux, ant;
+    int i = 0;
+    if(N > 0){
+        aux = (TLista)malloc(sizeof(nodo)); //Agrego el primer nodo
+        aux->num = vec[i];
+        aux->sig = *L;
+        *L = aux;
+        for(i = 1; i < N; i++){   //Agrego los nodos restantes
+            ant = aux;
+            aux = (TLista)malloc(sizeof(nodo));
+            aux->num = vec[i];
+            aux->sig = ant->sig;
+            ant->sig = aux;
+        }
+    }
+}
+
+void generaListaOrdenada(TLista *L , int vec[], int N){
+    TLista aux, ant, act;
+    int i = 0;
+    if(N > 0){
+        aux = (TLista)malloc(sizeof(nodo));  //Coloco el primer dato
+        aux->num = vec[i];
+        aux->sig = *L;
+        *L = aux;
+        for(i = 1; i < N; i++){
+            aux = (TLista)malloc(sizeof(nodo));
+            aux->num = vec[i];
+            ant = NULL;
+            act = *L;
+            while(act != NULL && aux->num > act->num){
+                ant = act;
+                act = act->sig;
+            }
+            if(ant == NULL){
+                aux->sig = act;
+                *L = aux;
+            }
+            else{
+                aux->sig = act;
+                ant->sig = aux;
+            }
+        }
     }
 }
 
