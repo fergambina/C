@@ -27,8 +27,8 @@ int main()
     TLista L = NULL;
     cargaVector(vec, &N);
     //generaListaInvirtiendoOrden(&L, vec, N);
-    //generaListaManteniendoOrden(&L, vec, N);
-    generaListaOrdenada(&L, vec, N);
+    generaListaManteniendoOrden(&L, vec, N);
+    //generaListaOrdenada(&L, vec, N);
     escribirLista(L);
     return 0;
 }
@@ -58,6 +58,24 @@ void generaListaInvirtiendoOrden(TLista *L, int vec[], int N){
 }
 
 void generaListaManteniendoOrden(TLista *L, int vec[], int N){
+    TLista act, nuevo;
+    int i = 0;
+    if(N > 0){
+        act = (TLista)malloc(sizeof(nodo));
+        act->num = vec[i];
+        *L = act;
+        act->sig = NULL;
+        for(i = 1; i < N; i++){
+            nuevo = (TLista)malloc(sizeof(nodo));
+            nuevo->num = vec[i];
+            nuevo->sig = NULL;
+            act->sig = nuevo;
+            act = nuevo;
+        }
+    }
+}
+
+/*void generaListaManteniendoOrden(TLista *L, int vec[], int N){
     TLista aux, ant;
     int i = 0;
     if(N > 0){
@@ -67,13 +85,13 @@ void generaListaManteniendoOrden(TLista *L, int vec[], int N){
         *L = aux;
         for(i = 1; i < N; i++){   //Agrego los nodos restantes
             ant = aux;
-            aux = (TLista)malloc(sizeof(nodo));
+            aux = (TLista)malloc(sizeof(nodo));      //aux cambia de significado... (no tiene un unico proposito)
             aux->num = vec[i];
             aux->sig = ant->sig;
             ant->sig = aux;
         }
     }
-}
+}*/
 
 void generaListaOrdenada(TLista *L , int vec[], int N){
     TLista aux, ant, act;
@@ -84,7 +102,7 @@ void generaListaOrdenada(TLista *L , int vec[], int N){
         aux->sig = *L;
         *L = aux;
         for(i = 1; i < N; i++){
-            aux = (TLista)malloc(sizeof(nodo));
+            aux = (TLista)malloc(sizeof(nodo)); //
             aux->num = vec[i];
             ant = NULL;
             act = *L;
