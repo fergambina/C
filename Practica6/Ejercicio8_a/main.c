@@ -91,12 +91,52 @@ void cantVocales(TListaD LD, int *cantVoc){
 }
 
 void estaOrdenada(TListaD LD, int *res){
-    PnodoD aux;
-    aux = LD.pri;
+    PnodoD act;
     *res = 1;
-    while(aux != NULL && *res){
-        if(aux->car > aux->sig->car)
+    if(LD.pri != NULL){
+       act = LD.pri->sig;
+       while(act != NULL && *res == 1){
+        if(act->car < act->ant->car)
             *res = 0;
-        aux = aux->sig;
+        act = act->sig;
+       }
     }
 }
+
+void eliminaNodo(TListaD *LD, int p){
+    PnodoD act, elim;
+    int i;
+    if((*LD).pri != NULL){
+        if(p == 0){
+            elim = (*LD).pri;
+            if((*LD).pri == (*LD).ult){
+                (*LD).pri = NULL;
+                (*LD).ult = NULL;
+            }
+            else{
+                (*LD).pri = (*LD).pri->sig;
+                (*LD).pri->ant = NULL;
+            }
+            free(elim);
+        }
+        else{
+            i = 0;
+            act = (*LD).pri;
+            while(act != NULL && p != i){
+                act = act->sig;
+                i++;
+            }
+            if(act != NULL && p == i){
+                elim = act;
+                act->ant->sig = act->sig;
+                if(act->sig != NULL)
+                    act->sig->ant = act->ant;
+                else
+                    (*LD).ult = act->ant;
+                free(elim);
+            }
+        }
+    }
+}
+
+
