@@ -56,3 +56,13 @@ int cantHojas(arbol a){
     else
         return 0;
 }
+
+int esta(arbol a, int x){
+    if(a != NULL)
+        if(a->dato == x)
+            return 1;
+        else
+            return esta(a->izq, x) || esta(a->der, x);
+    else
+        return 0;
+}

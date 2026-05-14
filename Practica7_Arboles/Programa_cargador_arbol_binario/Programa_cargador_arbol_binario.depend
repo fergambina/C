@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1778700936 source:c:\users\usuario\desktop\prog_b\practica7_arboles\programa_cargador_arbol_binario\main.c
+	<stdio.h>
+	<stdlib.h>
+

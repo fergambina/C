@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1778695512 source:c:\users\usuario\desktop\prog_b\practica7_arboles\ejercicio5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
