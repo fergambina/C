@@ -1,3 +1,8 @@
+/*Desarrollar funciones para:
+a) devolver la suma de los elementos múltiplos de 3 de un árbol binario.
+b) retornar la cantidad de hojas de un árbol binario.
+c) informar si un valor recibido como parámetro se encuentra en un árbol binario.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
