@@ -50,6 +50,17 @@ void sumaMultiplos3(arbol a, int *suma){
     }
 }
 
+int sumaMultiplos3V2(arbol a){
+    if(a == NULL)
+        return 0;
+    else{
+        if(a->dato % 3 == 0)
+            return a->dato + sumaMultiplos3V2(a->izq) + sumaMultiplos3V2(a->der);
+        else
+            return sumaMultiplos3V2(a->izq) + sumaMultiplos3V2(a->der);
+    }
+}
+
 
 int cantHojas(arbol a){
     if(a != NULL){
