@@ -40,7 +40,7 @@ void addnodo(arbol* a, TElememtoA e) {
     (*a)->der = NULL;
 }
 
-
+//Ejercicio a)
 void sumaMultiplos3(arbol a, int *suma){
     if(a != NULL){
         if(a->dato % 3 == 0)
@@ -61,7 +61,7 @@ int sumaMultiplos3V2(arbol a){
     }
 }
 
-
+//Ejercicio b)
 int cantHojas(arbol a){
     if(a != NULL){
         if(a->izq == NULL && a->der == NULL)
@@ -73,6 +73,7 @@ int cantHojas(arbol a){
         return 0;
 }
 
+//Ejercicio c)
 int esta(arbol a, int x){
     if(a != NULL)
         if(a->dato == x)

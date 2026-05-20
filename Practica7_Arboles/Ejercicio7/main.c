@@ -47,6 +47,20 @@ void addnodo(arbol* a, TElementoA e) {
     (*a)->der = NULL;
 }
 
+
+int sumaNodosGrado1V2(arbol a, int nivelActual, int nivel){
+    if(a == NULL){
+        return 0;
+    }
+    else{
+        if(nivel == nivelActual && ((a->izq == NULL && a->der != NULL) || (a->izq != NULL && a->der == NULL)))
+            return a->dato;
+        else
+            return sumaNodosGrado1V2(a->izq, nivelActual + 1, nivel) + sumaNodosGrado1V2(a->der, nivelActual + 1, nivel);
+    }
+}
+
+
 void sumaNodosGrado1(arbol a, int nivel, int nivelActual, int *suma){
     if(a != NULL){
         if(nivel == nivelActual)

@@ -17,31 +17,32 @@ typedef nodo *arbol;
 
 void addnodo(arbol* a, TElementoA e);
 int cantNodosNivelesImpares(arbol a, int nivelActual);
-float prom(arbol a, int K);
+float promV1(arbol a, int K);
 int grado(arbol a);
 int suma(arbol a, int K);
 int cantNodos(arbol a, int K);
+void acumula(arbol a, int k, int *suma, int *cantidad);
+float promV2(arbol a, int k);
 
 int main(){
     arbol a;
     int gr;
-    addnodo(&a, 5); // Raíz
-
-    addnodo(&a->izq, 3); // Primer hijo de 5
-    addnodo(&a->izq->izq, 2); // Primer hijo de 3
-    addnodo(&a->izq->izq->der, 4); // Hermano de 2 (segundo hijo de 3)
-
-    addnodo(&a->izq->der, 7); // Hermano de 3 (segundo hijo de 5)
-    addnodo(&a->izq->der->izq, 6); // Primer hijo de 7
-
-    addnodo(&a->izq->der->der, 1); // Hermano de 7 (tercer hijo de 5)
-    addnodo(&a->izq->der->der->izq, 8); // Primer hijo de 1
-    addnodo(&a->izq->der->der->izq->der, 9); // Hermano de 8 (segundo hijo de 1)
+    addnodo(&a, 10); // Raíz
+    addnodo(&a->izq, 1); // Primer hijo de 5
+    addnodo(&a->izq->der, 2); // Primer hijo de 3
+    addnodo(&a->izq->der->izq, 4); // Hermano de 2 (segundo hijo de 3)
+    addnodo(&a->izq->der->izq->der, 5);
+    addnodo(&a->izq->der->der, 3);
+    addnodo(&a->izq->der->der->izq, 6);
+    addnodo(&a->izq->der->der->izq->izq, 7);
+    addnodo(&a->izq->der->der->izq->izq->izq, 10);
+    addnodo(&a->izq->der->der->izq->izq->der, 8);
     printf("Cantidad de nodos en niveles impares: %d\n", cantNodosNivelesImpares(a, 1));  //El nivel se incializa en 1.
 
     printf("Ingrese grado: ");
     scanf("%d", &gr);
-    printf("El promedio de las claves cuyo grado era %d es: %5.2f\n", gr, prom(a, gr));
+    printf("El promedio de las claves cuyo grado era %d es: %5.2f\n", gr, promV1(a, gr));
+    printf("El promedio de las claves cuyo grado era %d es: %5.2f\n", gr, promV2(a, gr));
     return 0;
 
 }
@@ -63,6 +64,17 @@ int cantNodosNivelesImpares(arbol a, int nivelActual){
         return 0;
 }
 
+//Ejercicio b) En esta version recorro el arbol dos veces... ineficiente...
+int grado(arbol a){
+    int cont = 0;
+    a = a->izq;
+    while(a != NULL){
+        cont++;
+        a = a->der;
+    }
+    return cont;
+}
+
 int cantNodos(arbol a, int K){
     if(a != NULL){
         if(grado(a) == K)
@@ -74,15 +86,6 @@ int cantNodos(arbol a, int K){
         return 0;
 }
 
-int grado(arbol a){
-    int cont = 0;
-    a = a->izq;
-    while(a != NULL){
-        cont++;
-        a = a->der;
-    }
-    return cont;
-}
 
 int suma(arbol a, int K){
     if(a != NULL)
@@ -94,7 +97,7 @@ int suma(arbol a, int K){
         return 0;
 }
 
-float prom(arbol a, int K){
+float promV1(arbol a, int K){
     int cantidad = cantNodos(a, K);
     if(cantidad > 0)
         return (float)suma(a, K) / cantidad;
@@ -102,17 +105,41 @@ float prom(arbol a, int K){
         return 0;
 }
 
+//Ejercicio b) Version 2. Recorro una sola vez el arbol.
+void acumula(arbol a, int k, int *suma, int *cantidad){
+    int gr;
+    if(a != NULL){
+        gr = grado(a);
+        if(gr == k){
+            (*suma) += a->dato;
+            (*cantidad)++;
+        }
+        acumula(a->izq, k , suma, cantidad);
+        acumula(a->der, k, suma, cantidad);
+    }
+}
+
+float promV2(arbol a, int k){
+    int suma = 0;
+    int cantidad = 0;
+    acumula(a, k, &suma, &cantidad);
+    if(cantidad > 0)
+        return (float)suma/cantidad;
+    else
+        return 0;
+}
+
+//Ejercicio c)
 int profundidad(arbol a){
     int profIzq, profDer;
     if(a != NULL){
-        profIzq = 1 + profundidad(a->izq);
-        profDer = profundidad(a->der);
+        profIzq = 1 + profundidad(a->izq);  //Voy al hijo del nodo del arbol general
+        profDer = profundidad(a->der);      //Voy al hermano del nodo del arbol general
         if(profIzq > profDer)
             return profIzq;
         else
             return profDer;
-
     }
     else
-        return -1;
+        return 0;
 }

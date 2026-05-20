@@ -55,6 +55,7 @@ void addnodo(arbol* a, TElememtoA e) {
 }
 
 
+//Ejercicio a)
 void profundidad(arbol a, int alturaActual, int *alturaMaxima){
     if(a != NULL){
         if(a->izq == NULL && a->der == NULL){
@@ -81,7 +82,7 @@ int profundidadV2(arbol a){
 }
 
 
-
+//Ejercicio b)
 void longCadenaMasLarga(arbol a, int *longMasLarga){
     int longActual;
     if(a != NULL){
@@ -112,7 +113,7 @@ int longCadenaMasLargaV2(arbol a){
 
 }
 
-
+//Ejercicio c)
 void hijosDerecho(arbol a, int *cantHijosDer){
     if(a != NULL){
         if(a->der != NULL)
