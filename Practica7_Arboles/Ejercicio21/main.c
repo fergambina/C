@@ -18,7 +18,7 @@ void addnodo(arbol* a, TElementoA e);
 
 int main(){
      arbol a;
-     int x;
+     int K;
      /* carga arbol ejemplo. Ej 1 */
      addnodo(&a, 5);
      addnodo(&a->izq, 8);
@@ -28,6 +28,8 @@ int main(){
      addnodo(&a->der, 4);
      addnodo(&a->der->izq, 1);
      addnodo(&a->der->izq->der, 2);
+     printf("Ingrese K");
+     scanf("%d", &K);;
 
      return 0;
 
@@ -40,6 +42,8 @@ void addnodo(arbol* a, TElementoA e) {
     (*a)->der = NULL;
 }
 
+
+//Ejercicio a)
 int calculaAltura(arbol a){
     int alturaPorHijos, alturaPorHerm;
     if(a == NULL)
@@ -67,15 +71,6 @@ int cantArboles(arbol a, int k){
 }
 
 //Insciso b)
-
-
-
-int inicializaArreglo(int vec[]){
-    int i;
-    for(i = 0; i < DIM; i++)
-        vec[i] = -999;
-}
-
 int buscaMaximo(arbol a){
     int maxIzq, maxDer, maximo;
     if(a == NULL){
@@ -91,7 +86,7 @@ int buscaMaximo(arbol a){
 
 void generaArreglo(arbol a, int vec[], int *n){
     while(a != NULL){
-        vec[*n] = buscaMaximo(a);
+        vec[*n] = buscaMaximo(a->izq);
         (*n)++;
         a = a->der;
     }

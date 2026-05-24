@@ -23,10 +23,12 @@ int suma(arbol a, int K);
 int cantNodos(arbol a, int K);
 void acumula(arbol a, int k, int *suma, int *cantidad);
 float promV2(arbol a, int k);
+int profundidad(arbol a);
+void gradoArbol_void(arbol a, int *gradoMax);
 
 int main(){
     arbol a;
-    int gr;
+    int gr, gradoMax = 0;
     addnodo(&a, 10); // Raíz
     addnodo(&a->izq, 1); // Primer hijo de 5
     addnodo(&a->izq->der, 2); // Primer hijo de 3
@@ -43,6 +45,10 @@ int main(){
     scanf("%d", &gr);
     printf("El promedio de las claves cuyo grado era %d es: %5.2f\n", gr, promV1(a, gr));
     printf("El promedio de las claves cuyo grado era %d es: %5.2f\n", gr, promV2(a, gr));
+    printf("La profundidad del arbol general es: %d\n", profundidad(a));
+    gradoArbol_void(a, &gradoMax);
+    printf("El grado del arbol general es: %d", gradoMax);
+
     return 0;
 
 }
@@ -54,7 +60,8 @@ void addnodo(arbol* a, TElementoA e) {
     (*a)->der = NULL;
 }
 
-int cantNodosNivelesImpares(arbol a, int nivelActual){
+//Ejercicio a)
+int cantNodosNivelesImpares(arbol a, int nivelActual){  //Inicializo nivelActual en main con 1.
     if(a != NULL)
         if(nivelActual % 2 != 0)
             return 1 + cantNodosNivelesImpares(a->izq, nivelActual + 1) + cantNodosNivelesImpares(a->der, nivelActual);
@@ -64,7 +71,7 @@ int cantNodosNivelesImpares(arbol a, int nivelActual){
         return 0;
 }
 
-//Ejercicio b) En esta version recorro el arbol dos veces... ineficiente...
+//Ejercicio b) En esta version recorro el arbol dos veces...
 int grado(arbol a){
     int cont = 0;
     a = a->izq;
@@ -129,17 +136,42 @@ float promV2(arbol a, int k){
         return 0;
 }
 
-//Ejercicio c)
+//Ejercicio c)    deberia dar 4
 int profundidad(arbol a){
     int profIzq, profDer;
     if(a != NULL){
-        profIzq = 1 + profundidad(a->izq);  //Voy al hijo del nodo del arbol general
-        profDer = profundidad(a->der);      //Voy al hermano del nodo del arbol general
+        profIzq = 1 + profundidad(a->izq);
+        profDer = profundidad(a->der);
         if(profIzq > profDer)
             return profIzq;
         else
             return profDer;
     }
     else
+        return -1;
+}
+
+//Ejercicio d
+/*int gradoArbol(arbol a){
+    int gradoNodo;
+    if(a == NULL)
         return 0;
+    else{
+        gradoNodo = grado(a);
+        if(gradoNodo > gradoMax)
+            return gradoNodo;
+        else
+            return gradoMax;
+    }
+}intento de funcion int*/
+
+void gradoArbol_void(arbol a, int *gradoMax){
+    int gradoNodo;
+    if(a != NULL){
+        gradoNodo = grado(a);
+        if(gradoNodo > *gradoMax)
+            *gradoMax = gradoNodo;
+        gradoArbol_void(a->izq, gradoMax);
+        gradoArbol_void(a->der, gradoMax);
+    }
 }

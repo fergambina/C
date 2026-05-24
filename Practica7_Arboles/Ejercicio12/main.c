@@ -65,3 +65,19 @@ void cantElemMayoresAyMenoresB(arbol a, int A, int B, int *cant){  //incializo c
         }
     }
 }
+
+int cantElemMayoresAyMenoresBV2(arbol a, int A, int B){
+    if(a == NULL)
+        return 0;
+    else{
+        if(a->dato > A && a->dato < B)
+           return 1 + cantElemMayoresAyMenoresBV2(a->izq, A, B) + cantElemMayoresAyMenoresBV2(a->der, A, B);
+        else
+            if(a->dato <= A)
+                return cantElemMayoresAyMenoresBV2(a->der, A, B);
+            else
+                return cantElemMayoresAyMenoresBV2(a->izq, A, B);
+    }
+
+}
+
