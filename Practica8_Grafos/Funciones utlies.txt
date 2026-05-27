@@ -1,0 +1,14 @@
+//Carga el grafo en una lista de adyacencia
+void iniciaListasAdy(TLista grafo[], int N){
+    int i;
+    for(i = 0; i < N; i++)
+        digrafo[i] = NULL;
+}
+
+void agregarArista(TLista grafo[], int origen, int destino){
+    TLista nuevo;
+    nuevo = (TLista)malloc(sizeof(nodo));
+    nuevo->vertice = destino;
+    nuevo->sig = digrafo[origen];
+    grafo[origen] = nuevo;
+}
