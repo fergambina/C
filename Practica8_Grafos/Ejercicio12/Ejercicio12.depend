@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1776130331 source:c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio12\pilas.c
+	<stdlib.h>
+	"Pilas.h"
+
+1780171716 c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio12\pilas.h
+
+1776133460 source:c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio12\cola.c
+	"Cola.h"
+
+1780266773 c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio12\cola.h
+
+1780269025 source:c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio12\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Pilas.h"
+	"Cola.h"
+
