@@ -25,7 +25,7 @@ int main()
 {
     TListaC LC;
     LC = NULL;
-    int cant, ord, p;
+    int cant = 0, ord, p;
     cargarLista(&LC);
     mostrarContenido(LC);
     printf("\n");
@@ -86,7 +86,6 @@ int esVocal(char c){
 
 void cantVocales(TListaC LC, int *cant){
     TListaC aux;
-    *cant = 0;
     if(LC != NULL){
         aux = LC;
         do{

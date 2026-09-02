@@ -115,18 +115,40 @@ void dniVoto(TListaC LC, char dni[]){
 
 void dniQueNoVotaron(TListaC *LC){
     FILE *archB;
+    TReg datos;
     TListaC act, ant, elim;
-    act = *LC;
-    if((*LC) != NULL){
-        archB = fopen("dnis.dat","wb");
-        if(archB != NULL){
+    archB = fopen("dnis.DAT", "wb");
+    if(archB != NULL){
+        if(*LC != NULL){
+            ant = *LC;
+            act = (*LC)->sig;
             do{
-                ant = ant-
-                act = act->sig;
-                if(act->voto = 'N'){
-
+                if(act->voto == 'N'){
+                    elim = act;
+                    datos.sexo = act->sexo;
+                    strcpy(datos.dni, act->dni);
+                    fwrite(&datos, sizeof(TReg), 1, archB);
+                    if(act == *LC && ant == *LC)
+                        *LC = NULL;
+                    else{
+                        if(act == *LC){
+                            ant->sig = (*LC)->sig;
+                            *LC = ant;
+                        }
+                        else
+                            ant->sig = act->sig;
+                    }
+                    act = act->sig;
+                    free(elim);
                 }
-            }while(act != (*LC));
+                else{
+                    ant = act;
+                    act = act->sig;
+                }
+            }while(*LC != NULL);
         }
+        fclose(archB);
     }
 }
+
+

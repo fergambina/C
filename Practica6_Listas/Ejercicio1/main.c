@@ -15,19 +15,22 @@ typedef nodo *TLista;
 
 void cargaLista(TLista *L);
 void muestraLista(TLista L);
-int cantVocales(TLista L);
+void cantVocales(TLista L, int *cont);
 int estaOrdenada(TLista L);
 void eliminaElemento(TLista *L, int P);
+int esVocal(char car);
 
 int main()
 {
     TLista L;
     cargaLista(&L);
+    int cont = 0;
     int P;
     printf("Lista cargada con insercion al incio: \n");
     muestraLista(L);
     printf("\n");
-    printf("Cantidad de vocales que contiene la lista: %d\n", cantVocales(L));
+    cantVocales(L, &cont);
+    printf("Cantidad de vocales que contiene la lista: %d\n", cont);
     if(estaOrdenada(L))
         printf("La lista esta ordenada.\n");
     else
@@ -60,11 +63,9 @@ void cargaLista(TLista *L){
 }
 
 void muestraLista(TLista L){
-    TLista aux;
-    aux = L;
-    while(aux != NULL){
-        printf("%c\t", aux->car);
-        aux = aux->sig;
+    while(L != NULL){
+        printf("%c\t", L->car);
+        L = L->sig;
     }
 }
 
@@ -76,16 +77,12 @@ int esVocal(char car){
         return 0;
 }
 
-int cantVocales(TLista L){
-    int cont = 0;
-    TLista aux;
-    aux = L;
-    while(aux != NULL){
-        if(esVocal(aux->car))
-            cont++;
-        aux = aux->sig;
+void cantVocales(TLista L, int *cont){
+    while(L != NULL){
+        if(esVocal(L->car))
+            (*cont)++;
+        L = L->sig;
     }
-    return cont;
 }
 
 int estaOrdenada(TLista L){

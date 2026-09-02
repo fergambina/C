@@ -76,6 +76,25 @@ void generaListaManteniendoOrden(TLista *L, int vec[], int N){
 }
 
 /*void generaListaManteniendoOrden(TLista *L, int vec[], int N){
+    TLista act, nuevo;
+    int i = 0;
+    if(N > 0){
+        nuevo = (TLista)malloc(sizeof(nodo));
+        nuevo->num = vec[i];
+        nuevo->sig = NULL;
+        *L = nuevo;
+        act = nuevo;
+        for(i = 1; i < N; i++){
+            nuevo = (TLista)malloc(sizeof(nodo));
+            nuevo->num = vec[i];
+            nuevo->sig = NULL;
+            act->sig = nuevo;
+            act = nuevo;
+        }
+    }
+}*/
+
+/*void generaListaManteniendoOrden(TLista *L, int vec[], int N){
     TLista aux, ant;
     int i = 0;
     if(N > 0){

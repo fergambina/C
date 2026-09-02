@@ -5,8 +5,14 @@
 
 1780171716 c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio11\pilas.h
 
-1780171817 source:c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio11\main.c
+1780327675 source:c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio11\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Pilas.h"
+	"Cola.h"
+
+1776133460 source:c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio11\cola.c
+	"Cola.h"
+
+1780266773 c:\users\usuario\desktop\prog_b\practica8_grafos\ejercicio11\cola.h
 

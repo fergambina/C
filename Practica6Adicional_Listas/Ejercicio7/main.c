@@ -52,41 +52,72 @@ int main()
 void generaListaDoble(TListaE LE, TListaD *LD){
     TListaE aux;
     SublistaJugadores actS;
-    PnodoD nuevo;
+    PnodoD nuevo, act;
     int cantJugadores, sumaEdades, mayorA30;
+
     (*LD).pri = NULL;
     (*LD).ult = NULL;
+
     aux = LE;
+
     while(aux != NULL){
         actS = aux->sub;
         cantJugadores = 0;
         sumaEdades = 0;
-        mayorA30 = 0; //Bandera
+        mayorA30 = 0;
+
         while(actS != NULL){
             sumaEdades += actS->edad;
             cantJugadores++;
+
             if(actS->edad > 30)
                 mayorA30 = 1;
+
             actS = actS->sig;
         }
+
         if(mayorA30){
             nuevo = (PnodoD)malloc(sizeof(nodoD));
+
             strcpy(nuevo->equipo, aux->equipo);
             nuevo->cantJugadores = cantJugadores;
             nuevo->edadProm = (float)sumaEdades / cantJugadores;
+
+            /* Lista vacía */
             if((*LD).pri == NULL){
                 nuevo->sig = NULL;
                 nuevo->ant = NULL;
                 (*LD).pri = nuevo;
                 (*LD).ult = nuevo;
             }
-            else{
-                nuevo->ant = (*LD).ult;
+            /* Antes del primero */
+            else if(strcmp(nuevo->equipo, (*LD).pri->equipo) < 0){
+                nuevo->sig = (*LD).pri;
+                nuevo->ant = NULL;
+                (*LD).pri->ant = nuevo;
+                (*LD).pri = nuevo;
+            }
+            /* Después del último */
+            else if(strcmp(nuevo->equipo, (*LD).ult->equipo) > 0){
                 nuevo->sig = NULL;
+                nuevo->ant = (*LD).ult;
                 (*LD).ult->sig = nuevo;
                 (*LD).ult = nuevo;
             }
+            /* En el medio */
+            else{
+                act = (*LD).pri->sig;
+
+                while(strcmp(act->equipo, nuevo->equipo) < 0)
+                    act = act->sig;
+
+                nuevo->sig = act;
+                nuevo->ant = act->ant;
+                act->ant->sig = nuevo;
+                act->ant = nuevo;
+            }
         }
+
         aux = aux->sig;
     }
 }

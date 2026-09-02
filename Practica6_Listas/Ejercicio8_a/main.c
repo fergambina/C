@@ -21,7 +21,7 @@ void estaOrdenada(TListaD LD, int *res);
 int main()
 {
     TListaD LD;
-    int cantVoc, res;
+    int cantVoc = 0, res;
     cargaLista(&LD);
     escribirLista(LD);
     printf("\n");
@@ -81,21 +81,18 @@ int esVocal(char c){
 void cantVocales(TListaD LD, int *cantVoc){
     PnodoD aux;
     aux = LD.pri;
-    *cantVoc = 0;
     while(aux != NULL){
         if(esVocal(aux->car))
             (*cantVoc)++;
         aux = aux->sig;
     }
-
 }
 
 void estaOrdenada(TListaD LD, int *res){
     PnodoD act;
-    *res = 1;
     if(LD.pri != NULL){
        act = LD.pri->sig;
-       while(act != NULL && *res == 1){
+       while(act != NULL && *res){
         if(act->car < act->ant->car)
             *res = 0;
         act = act->sig;

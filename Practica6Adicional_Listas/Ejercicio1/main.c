@@ -46,38 +46,25 @@ void verificaIgualdad(TLista L1, TLista L2, int *iguales){
         *iguales = 0;
 }
 
-void anadeLista(TLista L1, TLista L2){
-    TLista aux1, aux2, nuevo;
+void anadeLista(TLista *L1, TLista *L2){
+    TLista aux1 = *L1, aux2 = *L2;
     int ultElem1;
-    aux1 = L1;
-    aux2 = L2;
     while(aux1->sig != NULL)
         aux1 = aux1->sig;
     ultElem1 = aux1->num;
     if(aux2 != NULL){
-        if(aux2->num > ultElem1)  //L2 al final de L1
-            while(aux2 != NULL){
-                nuevo = (TLista)malloc(sizeof(nodo));
-                nuevo->num = aux2->num;
-                nuevo->sig = NULL;
-                aux1->sig = nuevo;
-                aux1 = nuevo;
-                aux2 = aux2->sig;
-            }
+        if(aux2->num > ultElem1){
+            aux1->sig = *L2;
+            *L2 = NULL;
+        }
         else{
             while(aux2->sig != NULL)
                 aux2 = aux2->sig;
-            aux1 = L1;
-            while(aux1 != NULL){
-                nuevo = (TLista)malloc(sizeof(nodo));
-                nuevo->num = aux1->num;
-                nuevo->sig = NULL;
-                aux2->sig = nuevo;
-                aux2 = nuevo;
-                aux1 = aux1->sig;
-            }
+            aux2->sig = *L1;
+            *L1 = NULL;
         }
     }
+
 }
 
 void eliminarNodos(TLista *L1, TLista L2){

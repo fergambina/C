@@ -65,9 +65,9 @@ void reservaPasaje(TListaDestinos LD, char destino[], int codVuelo, long unsigne
     }
     if(actD != NULL){
         actV = actD->subVuelos;
-        while(actV != NULL && codVuelo != actV->codVuelo)
+        while(actV != NULL && codVuelo > actV->codVuelo)
             actV = actV->sig;
-        if(actV != NULL){
+        if(actV != NULL  && codVuelo == actV->codVuelo){
             capacidadActual = 0;
             antP = NULL;
             actP = actV->subPasajeros;
@@ -98,9 +98,9 @@ void cancelaPasaje(TListaDestinos LD, char destino[], int codVuelo, unsigned lon
         actD = actD->sig;
     if(actD != NULL){
         actV = actD->subVuelos;
-        while(actV != NULL && codVuelo != actV->codVuelo)
+        while(actV != NULL && codVuelo > actV->codVuelo)
             actV = actV->sig;
-        if(actV != NULL){
+        if(actV != NULL && codVuelo == actV->codVuelo){
             antP = NULL;
             actP = actV->subPasajeros;
             while(actP != NULL && actP->dni != dni){
@@ -113,6 +113,7 @@ void cancelaPasaje(TListaDestinos LD, char destino[], int codVuelo, unsigned lon
                 else
                     antP->sig = actP->sig;
                 free(actP);
+                actV->capacidadPasajeros -= 1;
             }
         }
     }

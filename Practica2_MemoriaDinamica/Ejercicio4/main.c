@@ -15,7 +15,7 @@ int main()
     arreglo = (float *) malloc(n * sizeof(int));
     printf("Ingresando los numeros reales...");
     for(i = 0; i < n; i++){
-        printf("Elemento [%d]: ", i);
+        printf("Elemento [%d]: ", i + 1);
         scanf("%f", arreglo + i);
     }
     printf("Mostrando los numeros positivos...");

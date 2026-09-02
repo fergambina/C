@@ -155,7 +155,7 @@ int cantComponentesConexasProf(TLista grafo[], int N){
         cont++;
         VV[i] = cont;
         poneP(&P, i);
-        while(!vaciaP(P)){
+        while(!vaciaP(P) && !todosVisitados(VV, N)){
             vertice = consultaP(P);
             act = grafo[vertice];
             while(act != NULL && VV[act->vertice] != 0)
@@ -187,7 +187,7 @@ int cantComponentesConexasAmp(TLista grafo[], int N){
         cont++;
         poneC(&C, i);
         VV[i] = cont;
-        while(!vaciaC(C)){
+        while(!vaciaC(C) && !todosVisitados(VV, N)){
             sacaC(&C, &vertice);
             act = grafo[vertice];
             while(act != NULL){

@@ -12,9 +12,7 @@ int main()
     int *ptr[DIM], n = 0, num, i;
     FILE *arch;
     arch = fopen("numeros.txt", "r");
-    if(arch == NULL)
-        printf("Archivo no existente...");
-    else{
+    if(arch != NULL){
         while(fscanf(arch,"%d", &num) == 1){
             ptr[n] = (int *) malloc(sizeof(int));
             *ptr[n] = num;
@@ -24,7 +22,7 @@ int main()
         printf("Numeros positivos...\n");
         for(i = 0; i < n; i++)
             if(*ptr[i] > 0)
-                printf("%d\t", *ptr[i]);
+                printf("%d\n", *ptr[i]);
         for(i = 0; i < n; i++)
             free(ptr[i]);
     }
