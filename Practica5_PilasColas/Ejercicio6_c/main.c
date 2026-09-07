@@ -12,15 +12,15 @@ void minimo(TPila *P, int *min);
 int main()
 {
     TPila P;
-    TElementoP max, min;
+    TElementoP max = -9999, min;
     cargarPila(&P);
     maximo(&P, &max);
     minimo(&P, &min);
-    if(max != -999)
+    if(max != -9999)
         printf("Maximo de la pila: %d\n", max);
     else
         printf("La pila esta vacia.\n");
-    if(min != 999)
+    if(min != 9999)
         printf("Minimo de la pila: %d\n", min);
     else
         printf("La pila esta vacia.\n");
@@ -33,16 +33,28 @@ void cargarPila(TPila *P){
     iniciaP(P);
     archT = fopen("numeros.txt", "rt");
     if(archT != NULL){
-        while(fscanf(archT, "%d\n", &num) == 1)
+        while(fscanf(archT, "%d", &num) == 1)
             poneP(P, num);
         fclose(archT);
     }
-    else{
-        printf("El archivo no existe...");
+}
+
+void maximo(TPila *P, int *max){
+    TPila Paux;
+    TElementoP num;
+    iniciaP(&Paux);
+    while (!vaciaP(*P)) {
+        sacaP(P, &num);
+        *max = num > *max ? num : *max;
+        poneP(&Paux, num);
+    }
+    while (!vaciaP(Paux)) {
+        sacaP(&Paux, &num);
+        poneP(P, num);
     }
 }
 
-void maximo(TPila *P, int *max){   //Devuelve -999 en max si la pila esta vacia.
+/*void maximo(TPila *P, int *max){   //Devuelve -999 en max si la pila esta vacia.
     TElementoP num;
     TPila PAux;
     iniciaP(&PAux);
@@ -64,13 +76,13 @@ void maximo(TPila *P, int *max){   //Devuelve -999 en max si la pila esta vacia.
     else
         *max = -999;
 }
+*/
 
-
-void minimo(TPila *P, int *min){   //Devuelve 999 en min si la pila esta vacia.
+void minimo(TPila *P, int *min){
     TElementoP num;
     TPila PAux;
-    iniciaP(&PAux);
     if(!vaciaP(*P)){
+        iniciaP(&PAux);
         sacaP(P, &num);
         poneP(&PAux, num);
         *min = num;
@@ -86,5 +98,5 @@ void minimo(TPila *P, int *min){   //Devuelve 999 en min si la pila esta vacia.
         }
     }
     else
-        *min = +999;
+        *min = 9999;
 }

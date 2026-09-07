@@ -40,8 +40,8 @@ void cargarPila(TPila *P){
 void quitaValoresMayoresUltimo(TPila *P){
     TPila PAux;
     TElementoP ult, num;
-    iniciaP(&PAux);
     if(!vaciaP(*P)){
+        iniciaP(&PAux);
         sacaP(P, &ult);
         poneP(&PAux, ult);
         while(!vaciaP(*P)){

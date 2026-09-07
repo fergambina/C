@@ -37,8 +37,8 @@ void cargarPila(TPila *P){
 
 void promedio(TPila *P, float *prom){
     TPila PAux;
-    TElementoP num, sum = 0;
-    int cont = 0;
+    TElementoP num;
+    int sum = 0, cont = 0;
     iniciaP(&PAux);
     while(!vaciaP(*P)){
         sacaP(P, &num);
@@ -47,7 +47,7 @@ void promedio(TPila *P, float *prom){
         cont++;
     }
     if(cont > 0){
-        *prom = sum / cont;
+        *prom = (float)sum/cont;
         while(!vaciaP(PAux)){
             sacaP(&PAux, &num);
             poneP(P, num);

@@ -23,12 +23,10 @@ void cargarCola(TCola *C){
     archT = fopen("numeros.txt", "rt");
     iniciaC(C);
     if(archT != NULL){
-        while(fscanf(archT, "%f/n", &num) == 1)
+        while(fscanf(archT, "%f", &num) == 1)
             poneC(C, num);
         fclose(archT);
     }
-    else
-        printf("Archivo no existente...");
 }
 
 void mostrarCola(TCola *C){
@@ -39,5 +37,6 @@ void mostrarCola(TCola *C){
     while(num != cent){
         printf("%5.2f\t", num);
         sacaC(C, &num);
+        poneC(C, num);
     }
 }
