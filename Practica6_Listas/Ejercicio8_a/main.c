@@ -101,11 +101,11 @@ void estaOrdenada(TListaD LD, int *res){
 }
 
 void eliminaNodo(TListaD *LD, int p){
-    PnodoD act, elim;
+    PnodoD act;
     int i;
     if((*LD).pri != NULL){
         if(p == 0){
-            elim = (*LD).pri;
+            act = (*LD).pri;
             if((*LD).pri == (*LD).ult){
                 (*LD).pri = NULL;
                 (*LD).ult = NULL;

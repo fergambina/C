@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1790712636 source:c:\users\usuario\desktop\prog_b\practica6_listas\ejercicio7_biblioteca\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+

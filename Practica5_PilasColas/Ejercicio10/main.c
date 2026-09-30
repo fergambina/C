@@ -8,53 +8,72 @@ correcto: ( ( ) ( ) ). Ej. incorrectos: ( ( ) ( ) ; ( ) ) ( ; ( ) ) (  */
 #include <stdlib.h>
 #include "Pilas.h"
 
+
+void compruebaParentesis(){
+    TPila P;
+    TElementoP car, extraido;
+    int balanceado = 1;
+    iniciaP(&P);
+    printf("Ingrese una expresion terminada en '.': ");
+    scanf("%c", &car);
+    while(car != '.' && balanceado){
+        if(car == '(')
+            poneP(&P, car);
+        else{
+            if(car == ')'){
+                if(!vaciaP(P))
+                    sacaP(&P, &extraido);
+                else{
+                    balanceado = 0;
+                    printf("Error: Falta el parentesis izquierdo '('\n");
+                }
+            }
+        }
+        scanf(" %c", &car);
+    }
+    if (balanceado == 1) {
+        if (!vaciaP(P)) {
+            // Si la pila no quedó vacía, abrimos paréntesis que nunca cerramos
+            printf("Error: Falta el parentesis derecho ')'\n");
+        } else {
+            printf("La expresion es correcta y los parentesis estan balanceados.\n");
+        }
+    }
+
+}
+
+void compruebaExpresion(){
+    TPila P;
+    TElementoP car, extraido;
+    int balanceado = 1;
+    iniciaP(&P);
+    printf("Ingrese una secuencia de caracteres terminada en .: ");
+    scanf("%c", &car);
+    while(car != '.' && balanceado){
+        if(car == '(' || car == '{' || car == '[')
+            poneP(&P, car);
+        else{
+            if(car == ')' || car == '}' || car == ']')
+                if(vaciaP(P)){
+                    balanceado = 0;
+                    printf("Sobra simobolo de cierre\n");
+                }
+                else{
+                    sacaP(&P, &extraido);
+                    if((car == ')' && extraido != '(')|| (car == '}' && extraido != '{')|| (car == ']' && extraido != '[')){
+                        balanceado = 0;
+                        printf("Simbolos cruzados\n");
+                    }
+                }
+        }
+        scanf(" %c", &car);
+    }
+}
+
+
 int main()
 {
-    TPila p;
-    cargarSecuencia(&p);
+    compruebaParentesis();
     return 0;
 }
 
-void cargarSecuencia(TPila *p){
-    TElementoP car;
-    iniciaP(p);
-    printf("Ingrese caracter: ");
-    scanf("%c", &car);
-    while(car != '.'){
-        poneP(p, car);
-        printf("Ingrese caracter: ");
-        scanf("%c", &car);
-    }
-}
-
-void compruebaBalance(TPila *p, int *res){   //res se incializa con 0 en el main.
-    TElementoP car;
-    int cont_izq = 0;
-    int sin_error = 1;
-    TPila paux;
-    iniciaP(&paux);
-    *res = 0; //Expresion balanceada.
-    while(!vaciaP(*p)){
-        sacaP(p, &car);
-        poneP(&paux, car);
-    }
-    while(!vaciaP(paux)&& sin_error != 0){
-            sacaP(&paux, car);
-            if(car == '('){
-                cont_izq++
-            }
-            else{
-                if(car == ')')
-                    cont_izq--;
-                if(cont_izq < 0){
-                    *res = -1;
-                    sin_error = 0;
-                }
-            }
-
-    }
-    if(sin_error != 0 && cont_izq > 0){
-        *res = 1;
-    }
-
-}

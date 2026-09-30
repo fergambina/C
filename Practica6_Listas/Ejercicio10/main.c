@@ -76,7 +76,7 @@ void esPalindroma(TListaD LD, int *esPalin){
     if(LD.pri != NULL){
         auxP = LD.pri;
         auxU = LD.ult;
-        while(auxP != auxU && *esPalin){
+        while(auxP != auxU && auxP->sig != auxU && *esPalin){
             if(auxP->c != auxU->c)
                 *esPalin = 0;
             else{

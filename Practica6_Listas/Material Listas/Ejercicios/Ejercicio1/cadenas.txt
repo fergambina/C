@@ -1,0 +1,9 @@
+abc
+abcd
+ac
+ade
+acbc
+ac
+a
+a
+ad

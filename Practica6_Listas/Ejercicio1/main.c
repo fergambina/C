@@ -47,7 +47,7 @@ void cargaLista(TLista *L){
     FILE *arch;
     char car;
     TLista nuevo;
-    *L = NULL;  //incializar en NULL en main o funcion??
+    *L = NULL;
     arch = fopen("caracteres.txt", "rt");
     if(arch != NULL){
         while(fscanf(arch, " %c", &car) == 1){

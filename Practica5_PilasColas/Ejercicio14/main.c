@@ -48,7 +48,7 @@ void esPalindroma(TCola *c, int n, int *esPalind){  //esPalind se inicializa con
     }
     if(n % 2 != 0)  //La palabra tiene cantidad de letras impar, por lo cual debo sacarle el caracter del medio
         sacaC(c, &car);
-    while(!vaciaP(paux) && esPalind != 0){
+    while(!vaciaP(paux) && *esPalind != 0){
         sacaP(&paux, &temp1);
         sacaC(c, &temp2);
         if(temp1 != temp2)

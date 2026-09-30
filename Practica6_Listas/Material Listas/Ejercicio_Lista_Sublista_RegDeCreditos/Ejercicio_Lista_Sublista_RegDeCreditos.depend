@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1790532014 source:c:\users\usuario\desktop\prog_b\practica6_listas\ejerciciosteoria\ejercicio_lista_sublista_regdecreditos\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

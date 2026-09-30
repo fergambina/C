@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1776893971 source:c:\users\usuario\desktop\prog_b\practica5_pilascolas\cursada_2c_2026\ejercicio16_simulajuegonaipes\coladinamica.c
+	"ColaDinamica.h"
+
+1790001490 c:\users\usuario\desktop\prog_b\practica5_pilascolas\cursada_2c_2026\ejercicio16_simulajuegonaipes\coladinamica.h
+	<stdlib.h>
+
+1790001981 source:c:\users\usuario\desktop\prog_b\practica5_pilascolas\cursada_2c_2026\ejercicio16_simulajuegonaipes\piladinamica.c
+	<stdlib.h>
+	"PilaDinamica.h"
+
+1790001987 c:\users\usuario\desktop\prog_b\practica5_pilascolas\cursada_2c_2026\ejercicio16_simulajuegonaipes\piladinamica.h
+
+1790004296 source:c:\users\usuario\desktop\prog_b\practica5_pilascolas\cursada_2c_2026\ejercicio16_simulajuegonaipes\main.c
+	<stdio.h>
+	<stdlib.h>
+	"PilaDinamica.h"
+	"ColaDinamica.h"
+

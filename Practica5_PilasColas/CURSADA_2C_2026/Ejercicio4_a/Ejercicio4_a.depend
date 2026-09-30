@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1776133406 source:c:\users\usuario\desktop\prog_b\practica5\ejercicio4_a\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Cola.h"
+
+1776133598 c:\users\usuario\desktop\prog_b\practica5\ejercicio4_a\cola.h
+
+1776133460 source:c:\users\usuario\desktop\prog_b\practica5\ejercicio4_a\cola.c
+	"Cola.h"
+
