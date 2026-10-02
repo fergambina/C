@@ -189,49 +189,49 @@ void insertaLibro(TLista biblioteca[], char titulo[], char autor[], unsigned int
 }
 
 //registrar préstamos (mover el nodo de la sublista del autor al final de la sublista de libros prestados para el socio)
-void prestamo(TLista biblioteca[], TListaS *LS, char autor[], char socio[], char titulo[], int edicion) {
+void prestamo(TLista biblioteca[], TListaS *LS, char autor[], char nom[],
+              char titulo[], int edicion) {
     TLista actA;
-    TSublista antS, actS, actLP, antLP;
+    Sublista antS, actS, actLP, antLP;
     TListaS actSocio, antSocio, nuevoSocio;
-    int indice_letra = toupper(autor[0] - 'A';
+    int indice_letra = toupper(autor[0]) - 'A';
     actA = biblioteca[indice_letra];
-    while (actA != NULL && strcmp(actA->autor, autor) != 0) {
+    while (actA != NULL && strcmp(actA->autor, autor) != 0)   // busco el autor
         actA = actA->sig;
-    }
-    if (actA != NULL) {                 // existe el autor
+    if (actA != NULL) {                                       // si existe el autor
         antS = NULL;
         actS = actA->sub;
-        while (actS != NULL && strcmp(actS->titulo, titulo) < 0 ||
-               strcmp(actS->titulo, titulo) == 0 && edicion != actS->edicion) {
+        while (actS != NULL && !(strcmp(actS->titulo, titulo) == 0 && (strcmp(actS->titulo, titulo) == 0 && edicion == actS->edicion))){  // busco la posición del libro solicitado
             antS = actS;
             actS = actS->sig;
         }
-        if (actS != NULL && strcmp(actS->titulo, titulo) == 0) {   // libro encontrado
-            antS->sig = actS->sig;
+        if (actS != NULL) {  // si existe el libro
+            if (antS == NULL)
+                actA->sub = actS->sig;
+            else
+                antS->sig = actS->sig;
             actS->sig = NULL;
             antSocio = NULL;
             actSocio = *LS;
-            while (actSocio != NULL && strcmp(actSocio->socio, socio) != 0) {
+            while(actSocio != NULL && strcmp(actSocio->nom, nom) != 0){  // busco el socio
                 antSocio = actSocio;
                 actSocio = actSocio->sig;
             }
             if (actSocio != NULL) {
-                antLP = NULL;           // ¿Es necesario ant en la lista?
-                actLP = actSocio->subLP;
-                while (actLP != NULL) {
-                    antLP = actLP;
-                    actLP = actLP->sig;
+                if (actSocio->sublP == NULL)
+                    actSocio->sublP = actS;
+                else {
+                    actLP = actSocio->sublP;
+                    while (actLP->sig != NULL)
+                        actLP = actLP->sig;
+                    actLP->sig = actS;
                 }
-                if (antLP == NULL)
-                    actSocio->subLP = actS;
-                else
-                    antLP->sig = actS;
             }
-            else {                      // Inserto socio
+            else {                                            // inserto socio
                 nuevoSocio = (TListaS) malloc(sizeof(nodoSocio));
-                strcpy(nuevoSocio->socio, socio);
+                strcpy(nuevoSocio->nom, nom);
                 nuevoSocio->sig = NULL;
-                nuevoSocio->subLP = actS;
+                nuevoSocio->sublP = actS;
                 if (antSocio == NULL)
                     *LS = nuevoSocio;
                 else
