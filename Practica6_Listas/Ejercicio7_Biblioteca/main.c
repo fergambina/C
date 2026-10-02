@@ -201,7 +201,7 @@ void prestamo(TLista biblioteca[], TListaS *LS, char autor[], char nom[],
     if (actA != NULL) {                                       // si existe el autor
         antS = NULL;
         actS = actA->sub;
-        while (actS != NULL && !(strcmp(actS->titulo, titulo) == 0 && (strcmp(actS->titulo, titulo) == 0 && edicion == actS->edicion))){  // busco la posición del libro solicitado
+        while (actS != NULL && !((strcmp(actS->titulo, titulo) == 0 && edicion == actS->edicion)){  // busco la posición del libro solicitado
             antS = actS;
             actS = actS->sig;
         }
